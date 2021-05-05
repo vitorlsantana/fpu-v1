@@ -5,3 +5,31 @@
     <%= link_to "Acessar", "#", class: "btn btn-flat" %>
   </div>
 </div>
+
+<div class="cards">
+
+  <% if current_user.nil? %>
+    <%= link_to new_user_registration_path do %>
+    <div class="card-landing-page mt-5">
+      <span><i class="fas fa-user-plus"></i></span>
+      <div class="card-landing-page-infos">
+        <div>
+          <p>Seja parte de nossa comunidade e contribua com a atualização do banco de dados.</p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  <% else %>
+    <%= link_to new_person_path do %>
+    <div class="card-landing-page mt-5">
+      <span><i class="fas fa-edit"></i></span>
+      <div class="card-landing-page-infos">
+        <div>
+          <p>Contribua com a atualização do banco de dados.</p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+
+</div>
