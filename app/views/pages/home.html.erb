@@ -1,35 +1,24 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1531482615713-2afd69097998?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);">
   <div class="container">
-    <h1><strong>Fomento Produtivo</strong> Urbano</h1>
-    <p>Sistema de cadastro e gestão de pagamentos</p>
-    <%= link_to "Acessar", "#", class: "btn btn-flat" %>
+    <h1>Qualifica <strong>Progredir</strong></h1>
+    <p>Sistema de cadastro de beneficiários e gestão de parcerias</p>
+    <% if current_user.nil? %>
+      <%= link_to new_user_registration_path do %>
+      <div class="btn btn-flat">
+        <p>Acessar</p>
+      </div>
+      <% end %>
+    <% else %>
+      <%= link_to targets_new_path do %>
+      <div class="card-landing-page mt-5">
+        <div class="card-landing-page-infos">
+          <div>
+            <p>Cadastrar novos beneficiários</p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
-<div class="cards">
-
-  <% if current_user.nil? %>
-    <%= link_to new_user_registration_path do %>
-    <div class="card-landing-page mt-5">
-      <span><i class="fas fa-user-plus"></i></span>
-      <div class="card-landing-page-infos">
-        <div>
-          <p>Seja parte de nossa comunidade e contribua com a atualização do banco de dados.</p>
-        </div>
-      </div>
-    </div>
-    <% end %>
-  <% else %>
-    <%= link_to new_person_path do %>
-    <div class="card-landing-page mt-5">
-      <span><i class="fas fa-edit"></i></span>
-      <div class="card-landing-page-infos">
-        <div>
-          <p>Contribua com a atualização do banco de dados.</p>
-        </div>
-      </div>
-    </div>
-    <% end %>
-  <% end %>
-
-</div>
