@@ -3,21 +3,11 @@
     <h1>Qualifica <strong>Progredir</strong></h1>
     <p>Sistema de cadastro de beneficiários e gestão de parcerias</p>
     <% if current_user.nil? %>
-      <%= link_to new_user_registration_path do %>
-      <div class="btn btn-flat">
-        <p>Acessar</p>
-      </div>
-      <% end %>
+      <%= link_to "Acessar", new_user_registration_path, class: "btn btn-flat" %>
     <% else %>
-      <%= link_to targets_new_path do %>
-      <div class="card-landing-page mt-5">
-        <div class="card-landing-page-infos">
-          <div>
-            <p>Cadastrar novos beneficiários</p>
-          </div>
-        </div>
-      </div>
-      <% end %>
+      <%= link_to "Cadastrar novos beneficiários", targets_new_path, class: "btn btn-flat" %>
+      <%= link_to "Listar cursos cadastrados", courses_path, class: "btn btn-flat" %>
+      <%= link_to "Cadastrar novo cursos", courses_new_path, class: "btn btn-flat" %>
     <% end %>
   </div>
 </div>

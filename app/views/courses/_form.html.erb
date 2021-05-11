@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="table-container">
+    <%= simple_form_for(@course) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="form-inputs">
+        <%= f.input :nome, label: "Nome do curso" %>
+        <%= f.input :descricao, label: "Descrição do curso" %>
+        <%= f.input :duracao, label: "Carga horária" %>
+        <%= f.input :eixo, label: "Eixo" %>
+
+      <div class="form-actions mb-2">
+        <%= f.button :submit, value: "Cadastrar curso", class: "btn-ghost" %>
+        <%= f.button :button, "Cancelar", type: "reset", class: "btn-ghost" %>
+        <%= link_to 'Voltar', root_path, class: "btn-ghost" %>
+      </div>
+    <% end %>
+  </div>
+</div>

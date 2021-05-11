@@ -5,11 +5,7 @@ class TargetsController < ApplicationController
     skip_before_action :authenticate_user!, only: [:index, :show]
   
     def index
-        @targets = Target.all
-      end
-  
-    def show
-        @target = Target.find(params[:id])
+      @targets = Target.all
     end
   
     def new
@@ -17,21 +13,24 @@ class TargetsController < ApplicationController
     end
   
     def create
-        @target = Target.new(target_params)
-        @target.save
-    
-        # no need for app/views/restaurants/create.html.erb
-        redirect_to target_path(@target)
-      end
+      @target = Target.new(target_params)
+      @target.save
   
+      redirect_to targets_path(@target)
+    end
+
+    def show
+      @target = Target.find(params[:id])
+    end
+
     def edit
-        @target = Target.find(params[:id])
+      @target = Target.find(params[:id])
     end
   
     def update
-      if @target.update(rule_params)
+      if @target.update(target_params)
         @targets = Target.find(params[:id])
-        @restaurant.update(params[:restaurant])
+        @target.update(params[:target])
         redirect_to @targets, notice: 'As informações foram atualizadas.'
       else
         render :edit
@@ -39,14 +38,14 @@ class TargetsController < ApplicationController
     end
   
     def destroy
-        @target = Target.find(params[:id])
-        @target.destroy
-        # no need for app/views/restaurants/destroy.html.erb
-        redirect_to targets_path
+      @target = Target.find(params[:id])
+      @target.destroy
+      # no need for app/views/restaurants/destroy.html.erb
+      redirect_to targets_path
     end
   
     def mytargets
-        @targets = Target.where(user_id: current_user)
+      @targets = Target.where(user_id: current_user)
     end
 
     private
@@ -54,10 +53,9 @@ class TargetsController < ApplicationController
     def set_target
       @target = Target.find(params[:id])
     end
-  
+
     def target_params
-      params.require(:target).permit(:name, :cpf,
-        :municipio, :uf, :email, :telefone)
+      params.require(:target).permit(:name, :sexo, :cpf, :municipio, :uf, :email, :telefone)
     end
 
 end

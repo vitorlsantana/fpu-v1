@@ -1,14 +1,25 @@
-<%= simple_form_for(@target) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="container">
+  <div class="table-container">
+    <%= simple_form_for(@target) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name, label: "Nome Completo" %>
-    <%= f.input :cpf, label: "CPF" %>
-    <%= f.input :email, label: "E-mail" %>
+      <div class="form-inputs">
+        <%= f.input :name, label: "Nome Completo" %>
+        <%= f.input :sexo, label: "Sexo", collection: [['Feminino', 'option_value_1', {"class" => "class_name_1"}], ['Masculino', 'option_value_2', {"class" => "class_name_2"}], ['Prefiro não responder', 'option_value_3', {"class" => "class_name_3"}]] %>
+        <%= f.input :uf, label: "UF" %>
+        <%= f.input :municipio, label: "Município" %>
+        <%= f.input :cpf, label: "CPF" %>
+        <%= f.input :email, label: "E-mail" %>
+        <%= f.input :telefone, label: "Telefone" %>
+        <%= f.collection_select :course_id, Course.all, :id, :nome, {:prompt => 'Selecione o curso'},  {:style => "width:500px"} %>
+      </div>
 
-  <div class="form-actions mb-2">
-    <%= f.button :submit, value: "Cadastrar beneficiário", class: "btn-ghost" %>
-    <%= f.button :button, "Cancelar", type: "reset", class: "btn-cancel" %>
-  </div>
-<% end %>
+      <div class="form-actions mb-2">
+        <%= f.button :submit, value: "Cadastrar beneficiário", class: "btn-ghost" %>
+        <%= link_to "Cancelar", targets_path, class: "btn-ghost" %>
+        <%= link_to 'Voltar', root_path, class: "btn-ghost" %>
+      </div>
+    <% end %>
+</div>
+
